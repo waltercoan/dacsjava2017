@@ -3,21 +3,21 @@ package ejb;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import model.Cliente;
 
-/**
- * Session Bean implementation class ClienteEJB
- */
 @Stateless
 public class ClienteEJB implements ClienteEJBLocal {
 
-    /**
-     * Default constructor. 
-     */
 	@PersistenceContext(name="dacs2017context")
     private EntityManager em;
 	
     public ClienteEJB() {
         // TODO Auto-generated constructor stub
     }
+	@Override
+	public void insert(Cliente cliente) {
+		em.persist(cliente);
+
+	}
 
 }
