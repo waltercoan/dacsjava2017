@@ -7,8 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+@NamedQueries({
+	@NamedQuery(name="getall", query="from Cliente c"),
+	@NamedQuery(name="getallbyname", query="from Cliente c where c.nome = :name"),
+})
 
 @Entity
 public class Cliente {

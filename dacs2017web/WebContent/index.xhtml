@@ -11,9 +11,26 @@
 	<body>
 		<h:form>
 			<p:panel>
+			
+				<p:dataTable value="#{clienteControl.getAll()}" var="umCliente">
+					<p:column headerText="Nome">
+						<h:outputText value="#{umCliente.nome}"/>
+					</p:column>
+					<p:column headerText="Data Nascimento">
+						<h:outputText value="#{umCliente.dataNascimento}"/>
+					</p:column>
+				</p:dataTable>
+							
 				<p:commandButton value="Me clica" 
 					action="#{clienteControl.inserirCliente()}"/>
 			</p:panel>
 		</h:form>
 	</body>
 </html>
+
+
+
+
+
+
+
