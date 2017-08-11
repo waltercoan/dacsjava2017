@@ -19,11 +19,38 @@
 					<p:column headerText="Data Nascimento">
 						<h:outputText value="#{umCliente.dataNascimento}"/>
 					</p:column>
+					
+					<f:facet name="footer">
+						<p:commandButton value="Incluir" id="cbIncluir"
+							oncomplete="PF('dlg1').show()"/>
+					</f:facet>				
+					
 				</p:dataTable>
-							
-				<p:commandButton value="Me clica" 
-					action="#{clienteControl.inserirCliente()}"/>
 			</p:panel>
+			
+		</h:form>
+
+		<h:form id="form">
+			<p:dialog width="500" height="300" id="detailDialog" modal="true"
+				header="Detalhde do Cliente" widgetVar="dlg1">
+				<h:panelGrid id="formDetail" columns="2">
+					<h:outputLabel name="lblNome" value="Nome"/>
+					<p:inputText  id="txtNome" label="lblNome" 
+						value="#{clienteControl.model.nome}"/>
+					
+					<h:outputLabel name="lblData" value="Data de Nascimento"/>
+					<p:calendar id="txtDataNasc" showOn="button"
+						 value="#{clienteControl.model.dataNascimento}"/>
+					
+					<p:commandButton value="OK" action="#{clienteControl.save()}"
+						update=":form:formDetail"
+						onsuccess="PF('dlg1').hide()" id="cbOK"/>
+						
+					<p:commandButton value="Cancelar"
+						onsuccess="PF('dlg1').hide()" id="cbCancelar"/>
+					
+				</h:panelGrid>
+			</p:dialog>		
 		</h:form>
 	</body>
 </html>

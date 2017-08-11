@@ -14,7 +14,24 @@ public class ClienteControl {
 	@EJB
 	private ClienteEJBLocal clienteEJB;
 	
+	private Cliente model = new Cliente();
 	
+	public void save(){
+		clienteEJB.save(model);
+	}
+	
+	public Cliente getModel() {
+		return model;
+	}
+
+
+
+	public void setModel(Cliente model) {
+		this.model = model;
+	}
+
+
+
 	public List<Cliente> getAll(){
 		return clienteEJB.getAll();
 	}
