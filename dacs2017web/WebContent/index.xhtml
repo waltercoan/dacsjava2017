@@ -9,10 +9,11 @@
 		<title>Insert title here</title>
 	</h:head>
 	<body>
-		<h:form>
+		<h:form id="formtable">
 			<p:panel>
-			
-				<p:dataTable value="#{clienteControl.getAll()}" var="umCliente">
+				<p:dataTable value="#{clienteControl.getAll()}" var="umCliente"
+						selectionMode="single" selection="#{clienteControl.model}"
+						rowKey="#{umCliente.id}">
 					<p:column headerText="Nome">
 						<h:outputText value="#{umCliente.nome}"/>
 					</p:column>
@@ -22,12 +23,19 @@
 					
 					<f:facet name="footer">
 						<p:commandButton value="Incluir" id="cbIncluir"
+							action="#{clienteControl.insert()}"
+							update=":form:formDetail"
 							oncomplete="PF('dlg1').show()"/>
+						<p:commandButton value="Alterar" id="cbAlterar"
+							update=":form:formDetail"
+							oncomplete="PF('dlg1').show()"/>
+						<p:commandButton value="Excluir" id="cbExcluir"
+							update=":form:formDetail"
+							oncomplete="PF('dlgremove').show()"/>							
 					</f:facet>				
 					
 				</p:dataTable>
 			</p:panel>
-			
 		</h:form>
 
 		<h:form id="form">
@@ -43,7 +51,7 @@
 						 value="#{clienteControl.model.dataNascimento}"/>
 					
 					<p:commandButton value="OK" action="#{clienteControl.save()}"
-						update=":form:formDetail"
+						update=":form:formDetail :formtable"
 						onsuccess="PF('dlg1').hide()" id="cbOK"/>
 						
 					<p:commandButton value="Cancelar"
@@ -52,6 +60,21 @@
 				</h:panelGrid>
 			</p:dialog>		
 		</h:form>
+		
+		<h:form id="formremove">
+			<p:dialog width="300" height="150" id="removeDialog" modal="true"
+				header="Confirma exclusão do Cliente?" widgetVar="dlgremove">
+				<h:panelGrid columns="2">
+					<p:commandButton value="OK" action="#{clienteControl.remove()}"
+						update=":formtable"
+						onsuccess="PF('dlgremove').hide()"/>
+						
+					<p:commandButton value="Cancelar" update=":formtable"
+						onsuccess="PF('dlgremove').hide()"/>
+				</h:panelGrid>
+			</p:dialog>		
+		</h:form>
+		
 	</body>
 </html>
 

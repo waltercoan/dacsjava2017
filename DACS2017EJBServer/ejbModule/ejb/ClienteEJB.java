@@ -24,6 +24,8 @@ public class ClienteEJB implements ClienteEJBLocal {
 	}
 	@Override
 	public void save(Cliente cliente) {
+		System.out.println("ID: " + cliente.getId());
+		System.out.println("nome: " + cliente.getNome());
 		if(em.find(Cliente.class, cliente.getId()) == null){
 			em.persist(cliente);
 		}else{

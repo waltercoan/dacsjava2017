@@ -14,4 +14,5 @@ public interface ClienteEJBLocal {
 	public List<Cliente> getAllByName(String name);
 	
 	
+	
 }
