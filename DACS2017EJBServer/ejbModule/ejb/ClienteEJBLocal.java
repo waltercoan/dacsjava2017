@@ -12,6 +12,7 @@ public interface ClienteEJBLocal {
 	public void remove(Cliente cliente);
 	public List<Cliente> getAll();
 	public List<Cliente> getAllByName(String name);
+	public Cliente getById(long id);
 	
 	
 	

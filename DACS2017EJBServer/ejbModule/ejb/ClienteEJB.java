@@ -48,5 +48,8 @@ public class ClienteEJB implements ClienteEJBLocal {
 		q.setParameter("name", name);
 		return q.getResultList();
 	}
-
+	@Override
+	public Cliente getById(long id) {
+		return em.find(Cliente.class, id);
+	}
 }
